@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 namespace SongLoaderLite
 {
+    /// <summary>
+    /// Main functions bootstrap here, is the interface used for injection into the main application
+    /// </summary>
     public class Plugin : IPlugin
     {
         public string Name => "SongLoaderLite";
