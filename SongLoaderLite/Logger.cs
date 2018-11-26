@@ -19,6 +19,7 @@ namespace SongLoaderLite
 
         public enum Severity
         {
+            Debug,
             Info,
             Warn,
             Error,

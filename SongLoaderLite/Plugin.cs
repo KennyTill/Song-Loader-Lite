@@ -1,4 +1,5 @@
 ﻿using IllusionPlugin;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 namespace SongLoaderLite
@@ -10,6 +11,7 @@ namespace SongLoaderLite
     {
         public string Name => "SongLoaderLite";
         public string Version => "0.0.1";
+        private readonly string MENUSCENE = "Menu";
 
         /// <summary>
         /// Called when the program starts, where we bootstrap in out loading code
@@ -23,15 +25,28 @@ namespace SongLoaderLite
         /// <summary>
         /// This is the event that is called when the scene changes, used for checking if the current scene is the menu
         /// </summary>
-        /// <param name="arg0">Previous Scene(?)</param>
-        /// <param name="arg1">Loaded Scene(?)</param>
+        /// <param name="arg0">Unknown at this time</param>
+        /// <param name="arg1">Information about the current scene</param>
         private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene arg1)
         {
             //TODO: stop loading here if the scene is changed from the menu
 
             //figure out if we are in the menu
-            string sceneNames = "Scene Arg 0:" + arg0.name + " Scene Arg 1:" + arg1.name;
-            Logger.Log(Logger.Severity.Info, sceneNames);
+            if (arg1.name == MENUSCENE)
+            {
+                //we are currently at the menu
+
+                //load up folder scanner to see if we can't get something working when this fires
+
+                FolderScanner scanner = new FolderScanner();
+                ArrayList jsonInfoFiles = scanner.ScanForInfoFiles("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Beat Saber\\CustomSongs\\"); // <- can I just point out how stupid it is to have to escape Windows file directories, in a programming language made by microsoft?
+
+                //testing here
+                foreach (string file in jsonInfoFiles)
+                {
+                    //Logger.Log(Logger.Severity.Debug, file);
+                }
+            }
 
         }
 
