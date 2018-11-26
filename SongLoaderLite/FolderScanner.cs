@@ -13,7 +13,7 @@ namespace SongLoaderLite
 
 
         /// <summary>
-        /// Scans for the info.json files in a given path, using the default beatsaver directory structure layout.
+        /// Scans for the info.json files in a given path, searching subdirectories and non-standard directory layouts.
         /// </summary>
         /// <param name="SongPath">Path of the custom song directory to scan</param>
         public ArrayList ScanForInfoFiles(string songPath)
