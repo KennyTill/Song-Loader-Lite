@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System;
 using System.Collections;
-using System;
+using System.IO;
 
 namespace SongLoaderLite
 {
@@ -20,7 +20,8 @@ namespace SongLoaderLite
         {
             ArrayList jsonInfoFilePath = new ArrayList();
 
-            try {
+            try
+            {
                 //first path for main customsongs folder
                 foreach (string parentDirectory in Directory.GetDirectories(songPath))
                 {
@@ -36,30 +37,14 @@ namespace SongLoaderLite
 
                         jsonInfoFilePath.Add(infoFiles[0]); //add the first one found, there should only be one.
 
-                        //// inner path for the song information folder
-                        //foreach (string songDirectory in Directory.GetDirectories(parentDirectory))
-                        //{ 
-                        //    // where the info.json file should be stored
-                        //    string[] files = Directory.GetFiles(songDirectory, "info.json");
-                        //    if (files.Length > 0)
-                        //    {
-                        //        //we found it, add it to the output list
-                        //        jsonInfoFilePath.Add(files[0]); // snag the first file, in theory there should only be one info file here
-
-                        //        //TODO: see if it will be faster to load the entire system here, while we have the file locations.
-                        //    }
-                        //    else
-                        //    {
-                        //        Logger.Log(Logger.Severity.Warn, "Could not file file at " + parentDirectory + " Skipping");
-                        //    }
-
-                        //}
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         Logger.Log(Logger.Severity.Warn, ex.Message + " Skipping");
                     }
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 // something went wrong
                 Logger.Log(Logger.Severity.Critical, ex.Message);
