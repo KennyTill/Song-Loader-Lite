@@ -9,8 +9,6 @@ namespace SongLoaderLite
     /// </summary>
     class FolderScanner
     {
-        //TODO: add in functions for scanning though the folders
-
 
         /// <summary>
         /// Scans for the info.json files in a given path, searching subdirectories and non-standard directory layouts.
@@ -27,7 +25,8 @@ namespace SongLoaderLite
                 {
                     try
                     {
-                        string[] infoFiles = Directory.GetFiles(parentDirectory, "info.json", SearchOption.AllDirectories); //searching subdirectories automatically is more reliable. This helps fix where the songs dont follow standard directory structure.
+                        //Searching subdirectories automatically is more reliable. This helps fix where the songs dont follow standard directory structure.
+                        string[] infoFiles = Directory.GetFiles(parentDirectory, "info.json", SearchOption.AllDirectories);
 
                         if (infoFiles.Length <= 0)
                         {
@@ -35,18 +34,22 @@ namespace SongLoaderLite
                             continue;
                         }
 
-                        jsonInfoFilePath.Add(infoFiles[0]); //add the first one found, there should only be one.
+                        //Add the first one found, there should only be one
+                        jsonInfoFilePath.Add(infoFiles[0]);
 
                     }
                     catch (Exception ex)
                     {
+                        //There was likely an issue with the directory name. Either it doesn't exist or it contains invalid characters.
+                        //Either way, log it, skip it, and move on.
                         Logger.Log(Logger.Severity.Warn, ex.Message + " Skipping");
                     }
                 }
             }
             catch (Exception ex)
             {
-                // something went wrong
+                // Something went wrong and none of our songs loaded.
+                // Log it, skip it, and return a blank info file path to prevent crashing
                 Logger.Log(Logger.Severity.Critical, ex.Message);
             }
             return jsonInfoFilePath;

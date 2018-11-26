@@ -30,13 +30,13 @@ namespace SongLoaderLite
         private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene arg1)
         {
             //TODO: stop loading here if the scene is changed from the menu
+            //TODO: load once, then don't load again when we hit back to the menu after playing a song.
 
             //figure out if we are in the menu
             if (arg1.name == MENUSCENE)
             {
                 //we are currently at the menu
 
-                //load up folder scanner to see if we can't get something working when this fires
 
                 FolderScanner scanner = new FolderScanner();
                 ArrayList jsonInfoFiles = scanner.ScanForInfoFiles("C:\\Program Files (x86)\\Steam\\steamapps\\common\\Beat Saber\\CustomSongs\\"); // <- can I just point out how stupid it is to have to escape Windows file directories, in a programming language made by microsoft?
