@@ -46,6 +46,7 @@ namespace SongLoaderLite
                 {
                     //Logger.Log(Logger.Severity.Debug, file);
                 }
+                Logger.Log(Logger.Severity.Info, jsonInfoFiles.Count.ToString() + " songs found during scan");
             }
 
         }
