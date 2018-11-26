@@ -35,7 +35,7 @@ namespace SongLoaderLite
         /// </summary>
         public void OnApplicationQuit()
         {
-            
+
             SceneManager.activeSceneChanged -= SceneManagerOnActiveSceneChanged;
         }
 
