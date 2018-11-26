@@ -17,6 +17,7 @@ namespace SongLoaderLite
         public void OnApplicationStart()
         {
             SceneManager.activeSceneChanged += SceneManagerOnActiveSceneChanged;
+            Logger.Log(Logger.Severity.Info, "Plugin Loaded");
         }
 
         /// <summary>
