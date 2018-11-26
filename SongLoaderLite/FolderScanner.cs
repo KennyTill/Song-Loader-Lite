@@ -26,24 +26,34 @@ namespace SongLoaderLite
                 {
                     try
                     {
-                        // inner path for the song information folder
-                        foreach (string songDirectory in Directory.GetDirectories(parentDirectory))
-                        { 
-                            // where the info.json file should be stored
-                            string[] files = Directory.GetFiles(songDirectory, "info.json");
-                            if (files.Length > 0)
-                            {
-                                //we found it, add it to the output list
-                                jsonInfoFilePath.Add(files[0]); // snag the first file, in theory there should only be one info file here
+                        string[] infoFiles = Directory.GetFiles(parentDirectory, "info.json", SearchOption.AllDirectories); // see if searching subdirectories is faster/more reliable. This could help fix where the songs dont file standard structure.
 
-                                //TODO: see if it will be faster to load the entire system here, while we have the file locations.
-                            }
-                            else
-                            {
-                                Logger.Log(Logger.Severity.Warn, "Could not file file at " + parentDirectory + " Skipping");
-                            }
-
+                        if (infoFiles.Length <= 0)
+                        {
+                            Logger.Log(Logger.Severity.Warn, "Could not file file at " + parentDirectory + " Skipping");
+                            continue;
                         }
+
+                        jsonInfoFilePath.Add(infoFiles[0]); //add the first one found, there should only be one.
+
+                        //// inner path for the song information folder
+                        //foreach (string songDirectory in Directory.GetDirectories(parentDirectory))
+                        //{ 
+                        //    // where the info.json file should be stored
+                        //    string[] files = Directory.GetFiles(songDirectory, "info.json");
+                        //    if (files.Length > 0)
+                        //    {
+                        //        //we found it, add it to the output list
+                        //        jsonInfoFilePath.Add(files[0]); // snag the first file, in theory there should only be one info file here
+
+                        //        //TODO: see if it will be faster to load the entire system here, while we have the file locations.
+                        //    }
+                        //    else
+                        //    {
+                        //        Logger.Log(Logger.Severity.Warn, "Could not file file at " + parentDirectory + " Skipping");
+                        //    }
+
+                        //}
                     } catch (Exception ex)
                     {
                         Logger.Log(Logger.Severity.Warn, ex.Message + " Skipping");
