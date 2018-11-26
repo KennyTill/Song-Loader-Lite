@@ -27,7 +27,7 @@ namespace SongLoaderLite
                 {
                     try
                     {
-                        string[] infoFiles = Directory.GetFiles(parentDirectory, "info.json", SearchOption.AllDirectories); // see if searching subdirectories is faster/more reliable. This could help fix where the songs dont file standard structure.
+                        string[] infoFiles = Directory.GetFiles(parentDirectory, "info.json", SearchOption.AllDirectories); //searching subdirectories automatically is more reliable. This helps fix where the songs dont follow standard directory structure.
 
                         if (infoFiles.Length <= 0)
                         {
