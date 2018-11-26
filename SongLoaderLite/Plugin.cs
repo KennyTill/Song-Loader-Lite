@@ -27,6 +27,11 @@ namespace SongLoaderLite
         private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene arg1)
         {
             //TODO: stop loading here if the scene is changed from the menu
+
+            //figure out if we are in the menu
+            string sceneNames = "Scene Arg 0:" + arg0.name + " Scene Arg 1:" + arg1.name;
+            Logger.Log(Logger.Severity.Info, sceneNames);
+
         }
 
 
