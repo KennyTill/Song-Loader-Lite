@@ -14,7 +14,7 @@
         float previewDuration;
         string coverImagePath;
         string environmentName;
-
+        DifficultyLevel[] difficultyLevels;
 
     }
 }
