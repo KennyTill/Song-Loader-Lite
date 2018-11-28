@@ -5,7 +5,6 @@
     /// </summary>
     class Song
     {
-        //TODO: add in song properties that will be used throughout the program
         string songName;
         string subSongName;
         string authorName;
